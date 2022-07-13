@@ -1,13 +1,12 @@
-const db = require('../db/db.json');
-const fs = require('fs');
-const path = require('path');
+const router = require('express').Router();
+const { notes } = require("../db/db.json");
 
-module.exports = function (app) {
-    app.get('/api/notes', function (req, res) {
-        fs.readFile('./db/db.json', (err, data) => {
-            if (err) throw err;
-            dbData = JSON.parse(data);
-            res.send(dbData);
-        });
-    });
-}
+// show all notes in json data
+router.get("/notes", (req, res) => {
+    let results = notes;
+    console.log(notes);
+    res.json(results);
+
+});
+
+module.exports = router;
